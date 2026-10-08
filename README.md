@@ -1,72 +1,29 @@
 # Camera Calibration Toolkit
 
-## About
-This project is a modular toolkit for camera calibration using Aruco markers, designed for extracting both intrinsic and extrinsic camera parameters. The toolkit allows users to:
-- Generate custom Aruco boards for calibration.
-- Capture calibration images from live video streams or camera feeds.
-- Compute intrinsic and extrinsic parameters of the camera.
-- Validate calibration results by projecting 3D points onto the image.
+This repository is intended to document a camera-calibration toolkit using ArUco markers. The proposed workflow covers board generation, calibration image capture, intrinsic and extrinsic parameter estimation, and visual validation by projecting points into an image.
 
-## Topics
-- computer-vision
-- camera-calibration
-- aruco-markers
-- image-processing
-- 3d-geometry
-- opencv
-- intrinsic-parameters
-- extrinsic-parameters
+## Repository status
 
-## Features
-- **Aruco Board Generation**: Create custom Aruco boards to use for calibration.
-- **Image Capture**: Capture calibration images from a live video stream or camera.
-- **Intrinsic Calibration**: Compute the camera's intrinsic parameters such as focal length, optical center, and distortion coefficients.
-- **Extrinsic Calibration**: Compute the camera's extrinsic parameters including rotation and translation vectors.
-- **Calibration Testing**: Visualize the accuracy of the calibration by projecting 3D points onto the image and comparing with actual image points.
+The current repository contains this README only. The scripts, dependency file, sample images, and calibration outputs described by earlier documentation are not present in the tracked repository yet, so there is no runnable setup or command to provide at this time.
 
-## Requirements
-The project requires Python and the following libraries:
-- `opencv-python`
-- `numpy`
-- `PyYAML`
-- `tqdm`
+## Planned workflow
 
-To install these dependencies, run:
-```bash
-pip install -r requirements.txt
-```
+The intended toolkit can be organized around these stages:
 
-## Project Structure
-```bash
-.
-├── README.md
-├── main.py               # Main file to run the entire calibration process
-├── utils
-│   ├── aruco_generator.py  # Generates custom Aruco boards
-│   ├── image_capture.py    # Captures calibration images from a camera or video feed
-│   ├── intrinsic_calib.py  # Performs intrinsic camera calibration
-│   ├── calib_test.py       # Tests the accuracy of the calibration results
-│   ├── extrinsic_calib.py  # Performs extrinsic calibration and projects 3D points
-├── data                   # Directory to store calibration images and results
-├── debug                  # Directory to store test outputs
-└── requirements.txt       # Required dependencies for the project
-```
+1. Generate an ArUco calibration board.
+2. Capture images of the board from the camera.
+3. Estimate camera intrinsics and distortion coefficients.
+4. Estimate extrinsics for a defined scene or coordinate frame.
+5. Validate calibration by projecting known points and reviewing reprojection error.
 
-## How to Use
-**1- Generate Aruco Board:** Run the script to generate an Aruco board for calibration:
-```bash
-python utils/aruco_generator.py --rows <num_rows> --cols <num_cols> --marker_size <size>
-```
-This will create an Aruco board saved as `aruco_board.png`.
+## Planned dependencies
 
-**2- Capture Calibration Images:** Capture calibration images using a camera or video feed:
-```bash
-python utils/image_capture.py --input <camera_or_video_url> --model <model_name> --win <window_size>
-```
-Images will be saved in the `data/<model_name>` directory.
+A future implementation may use Python, OpenCV's ArUco module, NumPy, and YAML for configuration and result files. Exact requirements should be documented alongside the implementation once added.
 
-**3- Perform Intrinsic Calibration:** Compute the intrinsic parameters using the captured images:
-```bash
-python utils/intrinsic_calib.py --model <model_name> --len <marker_length> --sep <marker_separation>
-```
-The resulting camera matrix and distortion coefficients will be saved as `calibration.yaml`.
+## Contributing
+
+Contributions that add the implementation should include installation instructions, example inputs, expected output formats, and a reproducible calibration example.
+
+## License
+
+No license file is currently listed. Contact the repository owner before reusing or redistributing materials from this repository.
